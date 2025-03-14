@@ -54,8 +54,8 @@ class Cog{
   int revs = 0;
   
   void spinPoint(float speed){
-    this.point.x = this.center.x + this.offset * cos(angle);
-    this.point.y = this.center.y + this.offset* sin(angle);
+    this.point.x = this.center.x + (this.radius - this.offset) * cos(angle);
+    this.point.y = this.center.y + (this.radius - this.offset) * sin(angle);
     
     angle += speed/2;  // Increment angle
     

@@ -35,9 +35,10 @@ class Track{
     this.cogs.add(c);
   }
   
-  float angle = 0;
-  int revs = 0;
+
   void spinCog(int index, float speed){
+    float angle = this.cogAngles.get(index);
+    int revs = this.cogRevs.get(index);
     Cog cog = cogs.get(index);
     
     cog.center.x = this.center.x + (this.radius - cog.radius) * cos(angle);
@@ -52,6 +53,9 @@ class Track{
     }
     
     angle += speed/25;  // Increment angle (speed)
+    
+    this.cogAngles.set(index, angle);
+    this.cogRevs.set(index, revs);
 
   }
   
@@ -68,6 +72,9 @@ class Track{
     
     void spinAllCogs(float speed){
       for (int i = 0; i < this.cogs.size(); i++){
+        this.cogAngles.add(0.0);
+        this.cogRevs.add(0);
+        
         this.spinCog(i, speed);
       }
     }
